@@ -44,6 +44,7 @@ call plug#begin()
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'm4xshen/smartcolumn.nvim'
 
     " For luasnip users.
     " Plug 'L3MON4D3/LuaSnip'
@@ -61,7 +62,12 @@ call plug#begin()
     " Plug 'dcampos/nvim-snippy'
     " Plug 'dcampos/cmp-snippy'
     call plug#end()
+
+" Color Scheme
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+
+
 " move between panes to left/bottom/top/right
  nnoremap <C-h> <C-w>h
  nnoremap <C-j> <C-w>j
@@ -193,5 +199,8 @@ require'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
+}
+require'smartcolumn'.setup {
+    colorcolumn = "128", 
 }
 EOF

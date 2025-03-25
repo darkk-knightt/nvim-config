@@ -40,6 +40,7 @@ call plug#begin()
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'numToStr/Comment.nvim'
 
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'
@@ -61,7 +62,7 @@ call plug#begin()
     " For snippy users.
     " Plug 'dcampos/nvim-snippy'
     " Plug 'dcampos/cmp-snippy'
-    call plug#end()
+call plug#end()
 
 " Color Scheme
 autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
@@ -203,4 +204,5 @@ require'nvim-treesitter.configs'.setup {
 require'smartcolumn'.setup {
     colorcolumn = "128", 
 }
+require('Comment').setup()
 EOF

@@ -47,6 +47,9 @@ call plug#begin()
     Plug 'hrsh7th/vim-vsnip'
     Plug 'm4xshen/smartcolumn.nvim'
 
+    " Tmux
+    Plug 'alexghergh/nvim-tmux-navigation'
+
     " For luasnip users.
     " Plug 'L3MON4D3/LuaSnip'
     " Plug 'saadparwaiz1/cmp_luasnip'
@@ -74,6 +77,7 @@ colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchia
  nnoremap <C-j> <C-w>j
  nnoremap <C-k> <C-w>k
  nnoremap <C-l> <C-w>l
+ tnoremap <C-x> <C-\><C-n>
 
 " Press i to enter insert mode, and ii to exit insert mode.
 :inoremap ii <Esc>
@@ -100,7 +104,6 @@ endif
 lua <<EOF
   -- Set up nvim-cmp.
   local cmp = require'cmp'
-
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
@@ -205,4 +208,20 @@ require'smartcolumn'.setup {
     colorcolumn = "128", 
 }
 require('Comment').setup()
+vim.g.mapleader = " "
+vim.g.mapleader = "<Space>"
+
+-- Tmux keybinds
+require("nvim-tmux-navigation").setup {
+  disable_when_zoomed = true, -- defaults to false
+}
+
+vim.keymap.set("n", "<C-h>", require("nvim-tmux-navigation").NvimTmuxNavigateLeft)
+vim.keymap.set("n", "<C-j>", require("nvim-tmux-navigation").NvimTmuxNavigateDown)
+vim.keymap.set("n", "<C-k>", require("nvim-tmux-navigation").NvimTmuxNavigateUp)
+vim.keymap.set("n", "<C-l>", require("nvim-tmux-navigation").NvimTmuxNavigateRight)
+vim.keymap.set("n", "<C-\\>", require("nvim-tmux-navigation").NvimTmuxNavigateLastActive)
+vim.keymap.set("n", "<C-Space>", require("nvim-tmux-navigation").NvimTmuxNavigateNext)
+
+
 EOF

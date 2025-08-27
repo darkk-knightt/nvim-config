@@ -22,7 +22,8 @@ set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
-"
+
+" Plugins List
 call plug#begin()
     " Plugin Section
     " Plug 'dracula/vim', {'as': 'dracula'}
@@ -49,6 +50,10 @@ call plug#begin()
 
     " Tmux
     Plug 'alexghergh/nvim-tmux-navigation'
+    Plug 'nvim-lua/plenary.nvim'
+
+    " Telescope
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 
     " For luasnip users.
     " Plug 'L3MON4D3/LuaSnip'
@@ -71,7 +76,10 @@ call plug#end()
 autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
+" Keybinds "
 
+" Change leader
+let mapleader = " "
 " move between panes to left/bottom/top/right
  nnoremap <C-h> <C-w>h
  nnoremap <C-j> <C-w>j
@@ -86,8 +94,15 @@ colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchia
 :vnoremap jk <Esc>
 :vnoremap kj <Esc>
 
+" Longer vertical moves
 nnoremap J 5j
 nnoremap K 5k
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " open file in a text by placing text and gf
 nnoremap gf :vert winc f<cr>

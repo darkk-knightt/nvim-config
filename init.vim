@@ -41,12 +41,12 @@ call plug#begin()
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'm4xshen/smartcolumn.nvim'
     Plug 'numToStr/Comment.nvim'
 
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
-    Plug 'm4xshen/smartcolumn.nvim'
 
     " Tmux
     Plug 'alexghergh/nvim-tmux-navigation'
@@ -54,6 +54,11 @@ call plug#begin()
 
     " Telescope
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+    
+    " Toolbar
+    Plug 'nvim-lualine/lualine.nvim'
+    " If you want to have icons in your statusline choose one of these
+    Plug 'nvim-tree/nvim-web-devicons'
 
     " For luasnip users.
     " Plug 'L3MON4D3/LuaSnip'
@@ -230,7 +235,6 @@ vim.g.mapleader = "<Space>"
 require("nvim-tmux-navigation").setup {
   disable_when_zoomed = true, -- defaults to false
 }
-
 vim.keymap.set("n", "<C-h>", require("nvim-tmux-navigation").NvimTmuxNavigateLeft)
 vim.keymap.set("n", "<C-j>", require("nvim-tmux-navigation").NvimTmuxNavigateDown)
 vim.keymap.set("n", "<C-k>", require("nvim-tmux-navigation").NvimTmuxNavigateUp)
@@ -238,5 +242,60 @@ vim.keymap.set("n", "<C-l>", require("nvim-tmux-navigation").NvimTmuxNavigateRig
 vim.keymap.set("n", "<C-\\>", require("nvim-tmux-navigation").NvimTmuxNavigateLastActive)
 vim.keymap.set("n", "<C-Space>", require("nvim-tmux-navigation").NvimTmuxNavigateNext)
 
+require('lualine').setup{
+    options = {
+    theme = horizon,
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+      refresh_time = 16, -- ~60fps
+      events = {
+        'WinEnter',
+        'BufEnter',
+        'BufWritePost',
+        'SessionLoadPost',
+        'FileChangedShellPost',
+        'VimResized',
+        'Filetype',
+        'CursorMoved',
+        'CursorMovedI',
+        'ModeChanged',
+      },
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
 
 EOF

@@ -195,15 +195,26 @@ lua <<EOF
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig').clangd.setup {
     capabilities = capabilities,
     filetypes = {"c", "cpp", "hpp"},
   }
+  require('lspconfig').rust_analyzer.setup {
+      capabilities = capabilities,
+    -- server = {
+      --   command = vim.split(vim.fn.executable("rust-analyzer"), "\n")[1],
+       -- },
+        init_options = {
+            checkOnSave =  true,
+            cargo = {
+                allFeatures = true,
+            }
+        },
+    }
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-  ensure_installed = { "cpp", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+  ensure_installed = { "cpp", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

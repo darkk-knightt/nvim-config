@@ -43,6 +43,7 @@ call plug#begin()
     Plug 'hrsh7th/nvim-cmp'
     Plug 'm4xshen/smartcolumn.nvim'
     Plug 'numToStr/Comment.nvim'
+    Plug 'tpope/vim-surround'
 
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'
@@ -79,7 +80,7 @@ call plug#end()
 
 " Color Scheme
 autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 " Keybinds "
 
@@ -211,7 +212,27 @@ lua <<EOF
             }
         },
     }
-
+    require('lspconfig').ts_ls.setup{
+        -- Optional: Add custom settings for ts_ls
+        settings = {
+            -- For example, enable completions for function calls
+            completions = {
+                completeFunctionCalls = true,
+            },
+            -- Configure TypeScript specific settings
+            typescript = {
+                format = {
+                    semicolons = "insert",
+                },
+            },
+            -- Configure JavaScript specific settings
+            javascript = {
+                format = {
+                    semicolons = "insert",
+                },
+            },
+        },
+    }
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = { "cpp", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust" },

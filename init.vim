@@ -44,6 +44,7 @@ call plug#begin()
     Plug 'm4xshen/smartcolumn.nvim'
     Plug 'numToStr/Comment.nvim'
     Plug 'tpope/vim-surround'
+    Plug 'lambdalisue/vim-suda'
 
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'

@@ -9,3 +9,4 @@ cargo install pokeget
 cp -r nvim $HOME/.config
 cp -r fish $HOME/.config
 cp .tmux.conf $HOME
+cp -r oh-my-posh $HOME/.config

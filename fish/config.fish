@@ -31,14 +31,14 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
 pokeget random --hide-name | fastfetch --file-raw -
 echo -e "\n\n"
-oh-my-posh init fish --config '/home/devin/.config/oh-my-posh/themes/sonicboom_dark_custom.json' | source
+oh-my-posh init fish --config '~/.config/oh-my-posh/themes/sonicboom_dark_custom.json' | source
 
 # pnpm
-set -gx PNPM_HOME "/home/devin/.local/share/pnpm"
+set -gx PNPM_HOME "~/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
 
 # Added by Quartus Prime software
-export SALT_LICENSE_FILE="$SALT_LICENSE_FILE;/home/devin/.altera.quartus/questa_lic.dat"
+export SALT_LICENSE_FILE="$SALT_LICENSE_FILE;~/.altera.quartus/questa_lic.dat"

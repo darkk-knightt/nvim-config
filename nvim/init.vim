@@ -45,6 +45,7 @@ call plug#begin()
     Plug 'numToStr/Comment.nvim'
     Plug 'tpope/vim-surround'
     Plug 'lambdalisue/vim-suda'
+    Plug 'nvim-tree/nvim-tree.lua'
 
     " For vsnip users.
     Plug 'hrsh7th/cmp-vsnip'
@@ -262,7 +263,6 @@ require'smartcolumn'.setup {
 }
 require('Comment').setup()
 vim.g.mapleader = " "
-vim.g.mapleader = "<Space>"
 
 -- Tmux keybinds
 require("nvim-tmux-navigation").setup {
@@ -331,4 +331,11 @@ require('lualine').setup{
   extensions = {}
 }
 
+-- nvim tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
+  desc = "Toggle NvimTree",
+})
+require("nvim-tree").setup()
 EOF
